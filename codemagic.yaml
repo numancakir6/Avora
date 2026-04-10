@@ -10,16 +10,17 @@ workflows:
       ios_signing:
         distribution_type: app_store
         bundle_identifier: com.lexion.avora
+      vars:
+        APP_STORE_CONNECT_ISSUER_ID: $APP_STORE_CONNECT_ISSUER_ID
+        APP_STORE_CONNECT_KEY_IDENTIFIER: $APP_STORE_CONNECT_KEY_IDENTIFIER
+        APP_STORE_CONNECT_PRIVATE_KEY: $APP_STORE_CONNECT_PRIVATE_KEY
+
+    integrations:
+      app_store_connect: Codemagic
 
     scripts:
       - name: Get Flutter packages
         script: flutter pub get
-
-      - name: Install CocoaPods dependencies
-        script: |
-          cd ios
-          pod install
-          cd ..
 
       - name: Set up code signing
         script: xcode-project use-profiles
