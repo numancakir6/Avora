@@ -7,13 +7,10 @@ workflows:
     environment:
       flutter: stable
       xcode: latest
+
       ios_signing:
         distribution_type: app_store
         bundle_identifier: com.lexion.avora
-      vars:
-        APP_STORE_CONNECT_ISSUER_ID: $APP_STORE_CONNECT_ISSUER_ID
-        APP_STORE_CONNECT_KEY_IDENTIFIER: $APP_STORE_CONNECT_KEY_IDENTIFIER
-        APP_STORE_CONNECT_PRIVATE_KEY: $APP_STORE_CONNECT_PRIVATE_KEY
 
     integrations:
       app_store_connect: Codemagic
@@ -30,7 +27,6 @@ workflows:
 
     artifacts:
       - build/ios/ipa/*.ipa
-      - /tmp/xcodebuild_logs/*.log
 
     publishing:
       app_store_connect:
