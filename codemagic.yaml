@@ -18,14 +18,31 @@ workflows:
       - name: Set up code signing
         script: xcode-project use-profiles
 
+      - name: Create export options plist
+        script: |
+          cat > /Users/builder/export_options.plist <<EOF
+          <?xml version="1.0" encoding="UTF-8"?>
+          <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+          <plist version="1.0">
+          <dict>
+            <key>method</key>
+            <string>app-store-connect</string>
+            <key>signingStyle</key>
+            <string>manual</string>
+            <key>provisioningProfiles</key>
+            <dict>
+              <key>com.lexion.avora</key>
+              <string>Avora</string>
+            </dict>
+          </dict>
+          </plist>
+          EOF
+
       - name: Build signed IPA
-        script: flutter build ipa --release
+        script: |
+          flutter build ipa --release --export-options-plist=/Users/builder/export_options.plist
 
     artifacts:
       - build/ios/ipa/*.ipa
-
-    publishing:
-      app_store_connect:
-        api_key: $APP_STORE_CONNECT_PRIVATE_KEY
-        key_id: $APP_STORE_CONNECT_KEY_IDENTIFIER
-        issuer_id: $APP_STORE_CONNECT_ISSUER_ID
+      - build/ios/archive/*.xcarchive
+      - /tmp/xcodebuild_logs/*.log
