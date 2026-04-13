@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'splash_page.dart';
+import 'lexion_intro_page.dart';
 
 void main() {
   runApp(const AvoraApp());
@@ -17,7 +17,7 @@ class AvoraApp extends StatelessWidget {
         scaffoldBackgroundColor: Colors.black,
         primaryColor: Colors.white,
       ),
-      home: const SplashPage(),
+      home: const LexionIntroPage(), // 🔥 BURASI DEĞİŞTİ
     );
   }
 }

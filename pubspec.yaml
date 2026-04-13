@@ -31,3 +31,4 @@ flutter:
   assets:
     - assets/avora/logo.svg
     - assets/avora/icon.png
+    - assets/lexion/lexion.png
