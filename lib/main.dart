@@ -17,7 +17,7 @@ class AvoraApp extends StatelessWidget {
         scaffoldBackgroundColor: Colors.black,
         primaryColor: Colors.white,
       ),
-      home: const LexionIntroPage(), // 🔥 BURASI DEĞİŞTİ
+      home: const LexionIntroPage(),
     );
   }
 }

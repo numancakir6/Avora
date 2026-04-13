@@ -13,23 +13,36 @@ class _LexionIntroPageState extends State<LexionIntroPage> {
   void initState() {
     super.initState();
 
-    Future.delayed(const Duration(seconds: 2), () {
-      if (!mounted) return;
-      Navigator.of(
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await precacheImage(
+        const AssetImage('assets/lexion/lexion.png'),
         context,
-      ).pushReplacement(MaterialPageRoute(builder: (_) => const SplashPage()));
+      );
+
+      await Future.delayed(const Duration(milliseconds: 900));
+
+      if (!mounted) return;
+
+      Navigator.of(context).pushReplacement(
+        PageRouteBuilder(
+          pageBuilder: (_, __, ___) => const SplashPage(),
+          transitionDuration: Duration.zero,
+          reverseTransitionDuration: Duration.zero,
+        ),
+      );
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.black,
-      body: Center(
-        child: Image.asset(
-          'assets/lexion/lexion.png',
-          width: 160, // iOS gibi ortalı ve sade
+    return const Material(
+      color: Colors.black,
+      child: Center(
+        child: Image(
+          image: AssetImage('assets/lexion/lexion.png'),
+          width: 170,
           fit: BoxFit.contain,
+          filterQuality: FilterQuality.high,
         ),
       ),
     );
