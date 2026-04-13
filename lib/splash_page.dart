@@ -202,7 +202,7 @@ class _SplashPageState extends State<SplashPage>
                         Opacity(
                           opacity: _titleOpacityAnim.value,
                           child: Transform.translate(
-                            offset: Offset(0, _titleLiftAnim.value - 140),
+                            offset: Offset(0, _titleLiftAnim.value - 120),
                             child: SizedBox(
                               width: 176,
                               height: 66,
